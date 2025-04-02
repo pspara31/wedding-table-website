@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Page (before login) -->
+    <div id="main-page">
+        <h1 id="welcome-message">Welcome to the Event!</h1>
+        <img id="main-image" src="your-image.jpg" alt="Event Image">
+        <button id="login-btn" class="btn">Enter Password</button>
+    </div>
+
+    <!-- Password Prompt -->
+    <div id="password-prompt" class="modal">
+        <input type="password" id="password-input" placeholder="Enter Password">
+        <button id="submit-password" class="btn">Submit</button>
+    </div>
+
+    <!-- Name Prompt -->
+    <div id="name-prompt" class="modal">
+        <input type="text" id="first-name" placeholder="First Name">
+        <input type="text" id="last-name" placeholder="Last Name">
+        <button id="submit-name" class="btn">Submit</button>
+    </div>
+
+    <!-- Table and Meal Selection Page -->
+    <div id="meal-selection-page">
+        <h2 id="table-meal-heading">Your Table and Meal Selection</h2>
+        <p id="table-number">Table Number: </p>
+        <p id="meal-selection">Meal Selection: </p>
+        <embed id="menu-pdf" src="menu.pdf" width="600" height="800" type="application/pdf">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
