@@ -3,39 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Main Page (before login) -->
-    <div id="main-page">
-        <h1 id="welcome-message">Welcome to the Event!</h1>
-        <img id="main-image" src="your-image.jpg" alt="Event Image">
-        <button id="login-btn" class="btn">Enter Password</button>
-    </div>
+    <title>Event RSVP</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 0; 
+            height: 100vh; /* Full height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center; /* Center content horizontally */
+        }
 
-    <!-- Password Prompt -->
-    <div id="password-prompt" class="modal">
-        <input type="password" id="password-input" placeholder="Enter Password">
-        <button id="submit-password" class="btn">Submit</button>
-    </div>
+        .container { 
+            max-width: 800px; 
+            width: 100%; 
+            padding: 20px; 
+        }
 
-    <!-- Name Prompt -->
-    <div id="name-prompt" class="modal">
-        <input type="text" id="first-name" placeholder="First Name">
-        <input type="text" id="last-name" placeholder="Last Name">
-        <button id="submit-name" class="btn">Submit</button>
-    </div>
+        img { 
+            max-width: 100%; 
+            height: auto; 
+        }
 
-    <!-- Table and Meal Selection Page -->
-    <div id="meal-selection-page">
-        <h2 id="table-meal-heading">Your Table and Meal Selection</h2>
-        <p id="table-number">Table Number: </p>
-        <p id="meal-selection">Meal Selection: </p>
-        <embed id="menu-pdf" src="menu.pdf" width="600" height="800" type="application/pdf">
-    </div>
+        .popup { 
+            display: none; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: white; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            justify-content: center; 
+            align-items: center; 
+        }
 
-    <script src="script.js"></script>
-</body>
-</html>
+        .popup-content { 
+            background-color: #333; 
+            padding: 20px; 
+            border-radius: 10px; 
+        }
+
+        button { 
+            padding: 10px 20px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 16px; 
+            margin: 10px;
+        }
+
+        button:hover { 
+            background-color: #45a049; 
+        }
+
+        .menu { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background-color: #f9f9f9; 
+            border-radius: 10px; 
+        }
+
+        .menu h3 { 
+            color: #333; 
+        }
+
+        .menu iframe { 
+            width: 100%; 
+            height: 500px; 
+            border: none; 
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 300px;
