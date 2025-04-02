@@ -73,4 +73,128 @@
         }
 
         .menu iframe { 
-            width:
+            width: 100%; 
+            height: 500px; 
+            border: none; 
+        }
+
+        /* Form styles for centering the input */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .form-container input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .centered {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full screen height */
+            position: absolute; /* Center the form even when scrolling */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Event!</h1>
+        <img id="mainImage" src="default-image.jpg" alt="Event Image">
+        
+        <h2>Please enter the password to proceed</h2>
+
+        <!-- Password Entry Form -->
+        <div class="form-container centered" id="passwordForm">
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+
+        <!-- Form for Name Entry (Initially Hidden) -->
+        <div class="form-container centered" id="nameForm" style="display:none;">
+            <h2>Please enter your first and last name</h2>
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <button onclick="submitName()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Popup displaying table and meal info -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Welcome, <span id="userName"></span>!</h2>
+            <p>Your Table Number: <span id="tableNumber"></span></p>
+            <p>Your Meal Selection: <span id="mealSelection"></span></p>
+            <p><a href="javascript:void(0);" onclick="closePopup()">Close</a></p>
+        </div>
+    </div>
+
+    <!-- Full Menu Section with PDF -->
+    <div class="menu">
+        <h3>Our Menu for the Night</h3>
+        <iframe src="menu.pdf" title="Event Menu"></iframe>
+    </div>
+
+    <script>
+        const password = '1234'; // Password for accessing the site
+        let data = []; // This will hold the data from the JSON file
+
+        // Fetch the JSON data
+        fetch('data.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                data = jsonData;
+            })
+            .catch(error => {
+                console.error('Error loading the data:', error);
+            });
+
+        // Check the password entered by the user
+        function checkPassword() {
+            const enteredPassword = document.getElementById('password').value;
+            if (enteredPassword === password) {
+                // Hide the password form and button
+                document.getElementById('passwordForm').style.display = 'none';
+                // Show name entry form
+                document.getElementById('nameForm').style.display = 'block';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+
+        // Find the user's table and meal selection based on their name
+        function submitName() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const user = data.find(entry => entry.firstName.toLowerCase() === firstName.toLowerCase() && entry.lastName.toLowerCase() === lastName.toLowerCase());
+
+            if (user) {
+                // Display user information in the popup
+                document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+                document.getElementById('tableNumber').textContent = user.tableNumber;
+                document.getElementById('mealSelection').textContent = user.meal;
+                document.getElementById('popup').style.display = 'flex';
+            } else {
+                alert('No matching name found. Please check your name and try again.');
+            }
+        }
+
+        // Close the popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
