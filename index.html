@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Website</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Link to the Ms. Claudy font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Ms+Claudy&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Main Image and Welcome Message -->
+    <div id="main-content">
+      <img src="your-image.jpg" alt="Event Image" class="main-image">
+      <h1 class="welcome-message">Welcome to Our Event</h1>
+      <div id="password-container">
+        <input type="password" id="password" placeholder="Enter Password" class="password-input">
+        <button id="password-submit" class="btn">Submit</button>
+      </div>
+    </div>
+
+    <!-- Name Prompt (Popup) -->
+    <div id="name-container" class="popup hidden">
+      <input type="text" id="first-name" placeholder="First Name" class="name-input">
+      <input type="text" id="last-name" placeholder="Last Name" class="name-input">
+      <button id="name-submit" class="btn">Submit</button>
+    </div>
+
+    <!-- Table Info and PDF -->
+    <div id="table-info" class="hidden">
+      <h2 id="table-number"></h2>
+      <p id="meal-selection"></p>
+      <a href="menu.pdf" target="_blank">
+        <button class="btn">View Menu</button>
+      </a>
+    </div>
+
+    <!-- QR Code -->
+    <div id="qr-code" class="hidden">
+      <img src="qr-code.png" alt="QR Code">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

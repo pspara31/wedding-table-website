@@ -1,0 +1,137 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #07383C; /* Dark teal background */
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.main-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.welcome-message {
+  font-family: 'Ms. Claudy', cursive;
+  color: #D3AF37; /* Gold color */
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+/* Password Input */
+.password-input {
+  padding: 10px;
+  font-size: 1em;
+  width: 200px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+#password-submit {
+  background-color: #D3AF37; /* Gold button */
+  color: #07383C; /* Dark teal text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+#password-submit:hover {
+  opacity: 0.8;
+}
+
+/* Popup for Name */
+.popup {
+  background-color: #07383C; /* Dark teal background */
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.name-input {
+  padding: 10px;
+  font-size: 1em;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 200px;
+  border: none;
+}
+
+#name-submit {
+  background-color: #D3AF37; /* Gold button */
+  color: #07383C; /* Dark teal text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+#name-submit:hover {
+  opacity: 0.8;
+}
+
+/* Table Info Section */
+#table-info {
+  background-color: #07383C; /* Dark teal */
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: white;
+}
+
+#table-number {
+  font-size: 1.5em;
+}
+
+#meal-selection {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+/* View Menu Button */
+.btn {
+  background-color: #D3AF37; /* Gold button */
+  color: #07383C; /* Dark teal text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Hidden Elements */
+.hidden {
+  display: none;
+}
+
+/* QR Code */
+#qr-code {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Centering the popup and elements */
+#password-container, #name-container, #table-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
