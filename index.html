@@ -1,47 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Website</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Link to the Ms. Claudy font from Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Ms+Claudy&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Seating Chart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ms+Claudy&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #07383C;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .main-heading {
+            font-family: 'Ms Claudy', cursive;
+            font-size: 3em;
+            color: #D3AF37;
+        }
+
+        .main-image {
+            margin-top: 20px;
+            width: 70%;
+            max-width: 600px;
+        }
+
+        .password-section {
+            margin-top: 30px;
+        }
+
+        .password-section input {
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            width: 250px;
+        }
+
+        .password-section button {
+            background-color: #D3AF37;
+            color: #07383C;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .password-section button:hover {
+            background-color: #b98c28;
+        }
+
+        .seating-form {
+            display: none;
+            background-color: #40E0D0; /* Turquoise */
+            padding: 50px;
+        }
+
+        .seating-form input {
+            padding: 10px;
+            font-size: 1.2em;
+            margin-top: 10px;
+            width: 250px;
+            background-color: gold;
+            color: #07383C;
+            border: 1px solid #07383C;
+        }
+
+        .pdf-container {
+            margin-top: 20px;
+        }
+
+        .pdf-container iframe {
+            width: 80%;
+            height: 500px;
+        }
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Main Image and Welcome Message -->
-    <div id="main-content">
-      <img src="your-image.jpg" alt="Event Image" class="main-image">
-      <h1 class="welcome-message">Welcome to Our Event</h1>
-      <div id="password-container">
-        <input type="password" id="password" placeholder="Enter Password" class="password-input">
-        <button id="password-submit" class="btn">Submit</button>
-      </div>
+
+<div class="container">
+    <!-- Main Page -->
+    <div class="main-page">
+        <h1 class="main-heading">Welcome to Our Wedding Seating Chart</h1>
+        <img src="your-image-url-here.jpg" alt="Wedding Image" class="main-image">
+
+        <!-- Password Section -->
+        <div class="password-section">
+            <input type="password" id="password" placeholder="Enter Password">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
     </div>
 
-    <!-- Name Prompt (Popup) -->
-    <div id="name-container" class="popup hidden">
-      <input type="text" id="first-name" placeholder="First Name" class="name-input">
-      <input type="text" id="last-name" placeholder="Last Name" class="name-input">
-      <button id="name-submit" class="btn">Submit</button>
-    </div>
+    <!-- Seating Form (hidden initially) -->
+    <div class="seating-form">
+        <h2>Welcome to Your Seating Chart</h2>
+        <p>Enter your details below:</p>
 
-    <!-- Table Info and PDF -->
-    <div id="table-info" class="hidden">
-      <h2 id="table-number"></h2>
-      <p id="meal-selection"></p>
-      <a href="menu.pdf" target="_blank">
-        <button class="btn">View Menu</button>
-      </a>
-    </div>
+        <form>
+            <input type="text" id="first-name" placeholder="First Name">
+            <input type="text" id="last-name" placeholder="Last Name">
+            <button type="button" onclick="showDetails()">Submit</button>
+        </form>
 
-    <!-- QR Code -->
-    <div id="qr-code" class="hidden">
-      <img src="qr-code.png" alt="QR Code">
-    </div>
-  </div>
+        <div id="details" style="display: none;">
+            <p>Table Number: <span id="table-number"></span></p>
+            <p>Meal Selection: <span id="meal-selection"></span></p>
 
-  <script src="script.js"></script>
+            <div class="pdf-container">
+                <h3>Menu</h3>
+                <iframe src="menu.pdf" type="application/pdf"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to check password and show seating form
+    function checkPassword() {
+        const password = document.getElementById('password').value;
+        const correctPassword = 'yourpassword'; // Change to your desired password
+
+        if (password === correctPassword) {
+            document.querySelector('.main-page').style.display = 'none';
+            document.querySelector('.seating-form').style.display = 'block';
+        } else {
+            alert('Incorrect password, please try again!');
+        }
+    }
+
+    // Function to fetch seating data and display the user's details
+    function showDetails() {
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+
+        fetch('seatingData.json')  // Fetch the JSON file containing seating data
+            .then(response => response.json())
+            .then(data => {
+                const user = data.find(user => user.firstName.toLowerCase() === firstName.toLowerCase() && user.lastName.toLowerCase() === lastName.toLowerCase());
+                
+                if (user) {
+                    // If the user is found, display their details
+                    document.getElementById('table-number').textContent = user.tableNumber;
+                    document.getElementById('meal-selection').textContent = user.mealSelection;
+
+                    document.getElementById('details').style.display = 'block';
+                } else {
+                    alert('User not found. Please check your name and try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching seating data:', error);
+                alert('There was an error fetching the seating data.');
+            });
+    }
+</script>
+
 </body>
 </html>
